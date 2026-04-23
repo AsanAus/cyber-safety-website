@@ -3,7 +3,7 @@ import About from "@/app/components/About";
 
 export default function Home() {
   return (
-    <main className="bg-[#0b3d2e] min-h-screen text-white">
+    <main id="home" className="bg-[#0b3d2e] min-h-screen text-white">
 
       {/* HERO */}
       <section className="relative px-6 py-28 text-center overflow-hidden">

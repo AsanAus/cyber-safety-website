@@ -1,0 +1,60 @@
+ // const tutorials = [
+  //   {
+  //     type: "Tutorial Video",
+  //     title: "Cara Kesan Profil Palsu",
+  //     desc: "Pelajari tanda-tanda akaun palsu di media sosial dan cara melindungi diri kamu.",
+  //     time: "2 minit",
+  //     color: "text-green-700",
+  //   },
+  //   {
+  //     type: "Panduan Interaktif",
+  //     title: "Guna AI untuk Homework (Cara Betul)",
+  //     desc: "AI boleh bantu kamu belajar, tapi ada cara yang betul dan salah.",
+  //     time: "3 minit",
+  //     color: "text-orange-500",
+  //   },
+  //   {
+  //     type: "Infografik",
+  //     title: "Kenali Berita Palsu (Hoax)",
+  //     desc: "Macam mana nak tahu berita itu betul atau auta? Ada 5 cara mudah!",
+  //     time: "1 minit",
+  //     color: "text-red-500",
+  //   },
+  // ];
+
+          
+
+        {/* ================= TUTORIAL ================= 
+        <div>
+          <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+            📚 Tutorial & Panduan
+          </h3>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {tutorials.map((item, i) => (
+              <div
+                key={i}
+                className="bg-white p-6 rounded-2xl shadow-md border hover:shadow-lg transition"
+              >
+                <p className={`text-xs mb-2 ${item.color}`}>
+                  {item.type}
+                </p>
+
+                <h4 className="font-semibold mb-2">
+                  {item.title}
+                </h4>
+
+                <p className="text-sm text-gray-600 mb-4">
+                  {item.desc}
+                </p>
+
+                <div className="flex justify-between text-xs text-gray-400">
+                  <span>⏱ {item.time}</span>
+                  <span className={`${item.color} font-semibold cursor-pointer`}>
+                    ▶ Mula
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div> */}

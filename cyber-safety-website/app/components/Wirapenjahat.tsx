@@ -5,7 +5,7 @@ export default function Wirapenjahat() {
   const [mode, setMode] = useState("wira"); // "wira" or "jahat"
 
   return (
-    <section className="bg-[#f5f1eb] text-[#0b3d2e] px-8 py-20">
+    <section className="bg-[#f5f1eb] text-[#0b3d2e] px-8 py-20 pb-50">
       <div className="max-w-6xl mx-auto">
         {/* HEADER */}
         <div className="mb-10">

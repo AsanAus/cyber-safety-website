@@ -10,7 +10,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 
 const navigation = [
-  { name: " Laman Utama", href: "/" },
+  { name: "Laman Utama", href: "/#home" },
   { name: "Kenali Kami", href: "/#kenalikami" },
   { name: "Maklumat", href: "/discovery" },
   { name: "Zon Pelajar", href: "/discovery#zonpelajar" },
@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="bg-white/90 backdrop-blur-md text-black sticky top-0 z-50 overflow-hidden"
+      className="bg-white/90 backdrop-blur-md text-black sticky top-0 z-50 overflow-hidden p pl-30 pr-30"
     >
       {({ open }) => (
         <>
