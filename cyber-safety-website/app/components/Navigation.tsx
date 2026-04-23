@@ -96,7 +96,7 @@ export default function Navbar() {
               ))}
 
               {/* Mobile Button */}
-              <Link href="/cabaran">
+              <Link href="/quiz">
                 <button className="mt-2 bg-orange-500 text-black px-4 py-2 rounded-full font-semibold">
                   Mula Cabaran!
                 </button>
