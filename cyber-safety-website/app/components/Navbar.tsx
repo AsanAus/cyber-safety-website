@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-8 py-4 bg-white/90 backdrop-blur-md text-black rounded-b-2xl">
+    <nav className="flex items-center justify-between px-8 py-4 bg-white/90 backdrop-blur-md text-black rounded-b-2xl ">
       <div className="flex items-center gap-2 font-semibold">
         <div className="w-8 h-8 bg-green-700 rounded-full"></div>
         <span>Bijak Digital</span>

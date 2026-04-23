@@ -1,8 +1,7 @@
 export default function Sudutpenjaga() {
-    return(
-        
-        <>
-        <section id="sudutpenjaga" className="bg-[#0b3d2e] text-white px-8 py-20">
+  return (
+    <>
+      <section id="sudutpenjaga" className="bg-[#0b3d2e] text-white px-8 py-20">
         <div className="max-w-6xl mx-auto">
           {/* HEADER */}
           <div className="text-center mb-16">
@@ -243,8 +242,6 @@ export default function Sudutpenjaga() {
           </div>
         </div>
       </section>
-
-      </>
-
-    );
+    </>
+  );
 }

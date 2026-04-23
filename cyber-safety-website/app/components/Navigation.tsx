@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="bg-white/90 backdrop-blur-md text-black sticky top-0 z-50 overflow-hidden p pl-30 pr-30"
+      className="bg-white/90 backdrop-blur-md text-black sticky top-0 z-50 px-4 md:px-8 lg:px-16"
     >
       {({ open }) => (
         <>
