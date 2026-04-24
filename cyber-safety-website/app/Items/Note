@@ -24,8 +24,7 @@
 
           
 
-        {/* ================= TUTORIAL ================= 
-        <div>
+        <!-- <div>
           <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
             📚 Tutorial & Panduan
           </h3>
@@ -57,4 +56,42 @@
               </div>
             ))}
           </div>
-        </div> */}
+        </div>  -->
+
+        const wiraFeatures = [
+    {
+      title: "Menyokong Pembelajaran Asas 📚",
+      desc: "AI boleh membantu kanak-kanak belajar membaca, menulis dan menguasai bahasa, terutama pada peringkat awal pembelajaran.",
+    },
+    {
+      title: "Jana idea kreatif 💡",
+      desc: "AI membantu brainstorming idea untuk projek, content dan tugasan sekolah.",
+    },
+    {
+      title: "Automasi kerja harian ⚙️",
+      desc: "AI boleh bantu buat kerja berulang seperti susun data, email dan laporan.",
+    },
+    {
+      title: "Tingkatkan produktiviti 🚀",
+      desc: "Kurangkan masa buat kerja manual dan fokus kepada perkara lebih penting.",
+    },
+  ];
+
+  const jahatFeatures = [
+    {
+      title: "Sebaran Maklumat Palsu 📰",
+      desc: "AI boleh digunakan untuk menghasilkan fake news atau maklumat salah yang mengelirukan orang ramai.",
+    },
+    {
+      title: "Penipuan & Scam 💸",
+      desc: "Penjenayah boleh guna AI untuk buat mesej scam yang nampak sangat realistik.",
+    },
+    {
+      title: "Deepfake & Identiti Palsu 🎭",
+      desc: "AI boleh cipta video atau suara palsu untuk menyamar sebagai orang lain.",
+    },
+    {
+      title: "Kebocoran Data 🔓",
+      desc: "Jika disalah guna, AI boleh membantu dalam mencuri atau mendedahkan maklumat peribadi.",
+    },
+  ];

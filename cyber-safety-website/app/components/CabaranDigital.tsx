@@ -59,6 +59,16 @@ export default function CabaranDigital() {
             className="w-full border border-gray-300 rounded-full px-5 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-green-700"
           />
 
+          {/* INPUT */}
+          <input
+            type="text"
+            placeholder="kelas kamu..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full border border-gray-300 rounded-full px-5 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-green-700"
+          />
+          
+
           {/* BUTTON */}
           <button
             onClick={handleStart}
