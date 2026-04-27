@@ -9,8 +9,10 @@ import {
   limit,
   onSnapshot,
   where,
-    getDocs,
+  getDocs,
 } from "firebase/firestore";
+import LottieAnim from "./LottieAnim";
+import * as animationData from "../../animations/Trophy.json";
 
 type LeaderboardEntry = {
   id: string;
@@ -32,7 +34,6 @@ function formatTime(s?: number) {
   return m > 0 ? `${m}m ${sec}s` : `${s.toFixed(1)}s`;
 }
 
-const MEDAL = ["🥇", "🥈", "🥉"];
 const RANK_BG = [
   "bg-yellow-50 border-yellow-300",
   "bg-gray-50 border-gray-300",
@@ -55,7 +56,6 @@ export default function Leaderboard({
 
   // Add this temporary useEffect to Leaderboard.tsx
   useEffect(() => {
-
     const check = async () => {
       const snap = await getDocs(collection(db, "quizResults"));
       console.log("Total docs in quizResults:", snap.size);
@@ -100,7 +100,6 @@ export default function Leaderboard({
   if (entries.length === 0) {
     return (
       <div className="text-center py-20 text-gray-400">
-        <div className="text-5xl mb-4">🏆</div>
         <p className="text-sm">Belum ada peserta lagi. Jadilah yang pertama!</p>
       </div>
     );
@@ -111,12 +110,21 @@ export default function Leaderboard({
 
   return (
     <div className="max-w-2xl mx-auto">
+      <div className="text-center mb-8">
+        <div className="inline-block bg-orange-500 text-white px-4 py-1 rounded-full text-xs font-semibold tracking-wider mb-3">
+          PAPAN MATA
+        </div>
+        <h2 className="text-3xl font-bold text-[#0b3d2e]">Wira Digital</h2>
+        <p className="text-gray-500 text-sm mt-1">
+          Top 10 peserta terbaik — skor tertinggi, masa terpantas.
+        </p>
+      </div>
+
       {/* Podium for top 3 */}
       <div className="flex items-end justify-center gap-3 mb-8">
         {/* 2nd place */}
         {top3[1] && (
           <div className="flex flex-col items-center flex-1">
-            <div className="text-2xl mb-1">🥈</div>
             <div
               className={`w-full rounded-t-2xl border-2 px-3 py-4 text-center ${RANK_BG[1]}`}
               style={{ minHeight: "110px" }}
@@ -143,7 +151,9 @@ export default function Leaderboard({
         {/* 1st place - taller */}
         {top3[0] && (
           <div className="flex flex-col items-center flex-1">
-            <div className="text-3xl mb-1 animate-bounce">🥇</div>
+            <div className="w-28 animate-bounce">
+              <LottieAnim animationData={animationData} loop={false} />
+            </div>
             <div
               className={`w-full rounded-t-2xl border-2 px-3 py-5 text-center ${RANK_BG[0]} shadow-lg`}
               style={{ minHeight: "140px" }}
@@ -170,7 +180,6 @@ export default function Leaderboard({
         {/* 3rd place */}
         {top3[2] && (
           <div className="flex flex-col items-center flex-1">
-            <div className="text-2xl mb-1">🥉</div>
             <div
               className={`w-full rounded-t-2xl border-2 px-3 py-4 text-center ${RANK_BG[2]}`}
               style={{ minHeight: "90px" }}

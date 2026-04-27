@@ -12,6 +12,8 @@ import {
   onSnapshot,
   doc,
 } from "firebase/firestore";
+import LottieAnim from "./LottieAnim";
+import * as animationData from "../../animations/game.json";
 
 export default function CabaranDigital() {
   const [name, setName] = useState("");
@@ -25,7 +27,7 @@ export default function CabaranDigital() {
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "Question Set", "Active Set"), (snap) => {
       // console.log("Active Set doc exists:", snap.exists());
-      // console.log("Active Set data:", snap.data()); 
+      // console.log("Active Set data:", snap.data());
       if (snap.exists()) {
         const data = snap.data();
         setActiveSet(data.activeSet ?? data["Set"] ?? "Set A");
@@ -56,7 +58,7 @@ export default function CabaranDigital() {
             CABARAN DIGITAL
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Uji Ilmu Siber Kamu! 🎯
+            Uji Ilmu Siber Kamu!
           </h2>
           <p className="text-gray-600 mb-10">
             5 situasi sebenar yang mungkin kamu hadapi. Pilih jawapan yang betul
@@ -65,7 +67,9 @@ export default function CabaranDigital() {
           </p>
 
           <div className="bg-white rounded-2xl shadow-md p-10 max-w-xl mx-auto">
-            <div className="text-4xl mb-4">🎮</div>
+            <div className="w-40 mx-auto">
+              <LottieAnim animationData={animationData} />
+            </div>
             <h3 className="text-xl font-semibold mb-2">Masukkan Nama Kamu</h3>
             <p className="text-sm text-gray-500 mb-6">
               Nama kamu akan tertera pada Lesen Wira Digital selepas tamat
@@ -103,7 +107,7 @@ export default function CabaranDigital() {
               onClick={handleStart}
               className="bg-green-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-800 transition"
             >
-              Mula Cabaran! 🚀
+              Mula Cabaran!
             </button>
 
             {/* Teaser to view leaderboard before playing */}
@@ -123,19 +127,6 @@ export default function CabaranDigital() {
       {/* Leaderboard tab */}
       {activeTab === "leaderboard" && (
         <div className="max-w-2xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="inline-block bg-orange-500 text-white px-4 py-1 rounded-full text-xs font-semibold tracking-wider mb-3">
-              PAPAN MATA
-            </div>
-            <h2 className="text-3xl font-bold text-[#0b3d2e]">
-              Wira Digital 🏆
-            </h2>
-            <p className="text-gray-500 text-sm mt-1">
-              Top 10 peserta terbaik — skor tertinggi, masa terpantas.
-            </p>
-          </div>
-
           <Leaderboard
             highlightName={quizDone ? name : undefined}
             activeSet={activeSet}
@@ -148,7 +139,7 @@ export default function CabaranDigital() {
                 onClick={() => setActiveTab("quiz")}
                 className="bg-green-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-800 transition"
               >
-                Mula Cabaran! 🚀
+                Mula Cabaran!
               </button>
             </div>
           )}
