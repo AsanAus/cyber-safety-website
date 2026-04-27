@@ -2,12 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { db } from "@/app/libs/firebase";
-import {
-  collection,
-  onSnapshot,
-  query,
-  orderBy,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import Section from "./Section";
 
 export default function Zon() {
   const [tips, setTips] = useState<any[]>([]);
@@ -34,7 +30,10 @@ export default function Zon() {
   }, []);
 
   return (
-    <section id="zonpelajar" className="bg-[#f5f1eb] text-[#0b3d2e] px-8 py-20 pb-5">
+    <section
+      id="zonpelajar"
+      className="bg-[#f5f1eb] text-[#0b3d2e] px-8 py-20 pb-5"
+    >
       <div className="max-w-6xl mx-auto">
         {/* ================= HEADER ================= */}
         <div className="text-center mb-12">
@@ -71,9 +70,9 @@ export default function Zon() {
                 🧑‍💻 Abang Cyber berkata:
               </p>
               <p className="text-sm text-gray-600">
-                "Jom kita tengok macam mana nak kekal selamat di internet! Kamu
-                tak perlu jadi pakar IT — cukup tahu 5 perkara asas untuk
-                selamat online."
+                "Jom kita tengok macam mana nak jadi hebat di internet! Kamu tak
+                perlu jadi pakar IT — cukup tahu 5 perkara asas untuk selamat
+                online. Mula dari sini!"
               </p>
             </div>
 
@@ -95,6 +94,10 @@ export default function Zon() {
           </div>
         </div>
       </div>
+
+      <Section />
+
+
     </section>
   );
 }

@@ -76,54 +76,60 @@ export default function AIWIRAJAHATADMIN() {
   };
 
   return (
-    <section className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Admin AI Wira & Jahat</h1>
+    <section className="max-w-5xl mx-auto py-10">
+      <h1 className="text-3xl font-bold mb-6">Admin AI Wira & Jahat</h1>
 
-      {/* 🔥 TABS */}
-      <div className="flex gap-4 mb-6">
-        <button
-          onClick={() => setActiveTab("wira")}
-          className={`px-4 py-2 rounded ${
-            activeTab === "wira" ? "bg-blue-500 text-white" : "bg-gray-200"
-          }`}
-        >
-          AI Wira
-        </button>
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-8 shadow-lg">
+        {/* 🔥 TABS */}
+        <div className="flex gap-2 mb-6 bg-gray-900 p-2 rounded-xl w-fit">
+          <button
+            onClick={() => setActiveTab("wira")}
+            className={`px-4 py-2 rounded-lg transition ${
+              activeTab === "wira"
+                ? "bg-blue-500 text-white shadow-md"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            AI Wira
+          </button>
 
-        <button
-          onClick={() => setActiveTab("jahat")}
-          className={`px-4 py-2 rounded ${
-            activeTab === "jahat" ? "bg-red-500 text-white" : "bg-gray-200"
-          }`}
-        >
-          AI Jahat
-        </button>
-      </div>
+          <button
+            onClick={() => setActiveTab("jahat")}
+            className={`px-4 py-2 rounded-lg transition ${
+              activeTab === "jahat"
+                ? "bg-red-500 text-white shadow-md"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            AI Jahat
+          </button>
+        </div>
 
-      {/* ➕ ADD */}
-      <div className="mb-6 space-y-2">
-        <input
-          className="border p-2 w-full"
-          placeholder="topic"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-        />
-        <textarea
-          className="border p-2 w-full"
-          placeholder="Description"
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-        />
-        <button
-          onClick={handleAdd}
-          className="bg-green-500 text-white px-4 py-2"
-        >
-          Add {activeTab}
-        </button>
+        {/* ➕ ADD */}
+        <div className="mb-6 space-y-2">
+          <input
+            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            placeholder="topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+          />
+          <textarea
+            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            placeholder="Description"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          />
+          <button
+            onClick={handleAdd}
+            className="bg-green-500 text-white px-4 py-2"
+          >
+            Add {activeTab}
+          </button>
+        </div>
       </div>
 
       {/* 📋 LIST */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
         {tips.map((item) => (
           <div key={item.id} className="border p-4 rounded">
             {editingItem?.id === item.id ? (
