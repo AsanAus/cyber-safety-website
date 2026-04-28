@@ -27,10 +27,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col">
         <Navigation/>
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
+        
         {/* FOOTER */}
       <footer className="bg-[#06281f] text-white px-8 pt-16 pb-6">
         <div className="max-w-6xl mx-auto">

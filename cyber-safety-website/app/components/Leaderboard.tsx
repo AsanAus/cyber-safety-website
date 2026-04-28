@@ -9,10 +9,10 @@ import {
   limit,
   onSnapshot,
   where,
-  getDocs,
 } from "firebase/firestore";
 import LottieAnim from "./LottieAnim";
 import * as animationData from "../../animations/Trophy.json";
+import * as confettiData from "../../animations/Confetti.json";
 
 type LeaderboardEntry = {
   id: string;
@@ -26,11 +26,9 @@ type LeaderboardEntry = {
 };
 
 function formatTime(s?: number) {
-  if (s == null) return "0.0s"; // handle undefined/null
-
+  if (s == null) return "0.0s";
   const m = Math.floor(s / 60);
   const sec = (s % 60).toFixed(1);
-
   return m > 0 ? `${m}m ${sec}s` : `${s.toFixed(1)}s`;
 }
 
@@ -44,6 +42,72 @@ const RANK_SCORE_COLOR = [
   "text-gray-500",
   "text-orange-500",
 ];
+const PODIUM_HEIGHT = ["140px", "110px", "90px"];
+const PODIUM_BAR_BG = ["bg-yellow-400", "bg-gray-200", "bg-orange-300"];
+const PODIUM_BAR_TEXT = ["text-yellow-800", "text-gray-500", "text-orange-800"];
+const PODIUM_BAR_H = ["h-16", "h-12", "h-8"];
+
+function PodiumCard({
+  entry,
+  rank,
+  highlightName,
+  showTrophy,
+}: {
+  entry: LeaderboardEntry;
+  rank: number;
+  highlightName?: string;
+  showTrophy?: boolean;
+}) {
+  const idx = rank - 1;
+  const isHighlighted = entry.name === highlightName;
+
+  return (
+    <div className="flex flex-col items-center flex-1">
+      
+      {showTrophy && (
+        <div className="w-24 mb-1">
+          <LottieAnim animationData={animationData} loop={true} />
+        </div>
+        
+      )}
+
+      <div
+        className={`w-full rounded-t-2xl border-2 px-3 text-center transition-all ${RANK_BG[idx]} ${
+          isHighlighted ? "ring-2 ring-green-400 ring-offset-1" : ""
+        }`}
+        style={{
+          minHeight: PODIUM_HEIGHT[idx],
+          paddingTop: "1rem",
+          paddingBottom: "1rem",
+        }}
+      >
+        <p className="font-bold text-gray-800 text-sm leading-tight text-wrap">
+          {entry.name}
+          {isHighlighted && (
+            <span className="ml-1 text-xs bg-green-100 text-green-600 px-1.5 py-0.5 rounded-full">
+              Anda
+            </span>
+          )}
+        </p>
+        <p className="text-xs text-gray-400 mb-2 truncate">{entry.kelas}</p>
+        <p className={`text-2xl font-black ${RANK_SCORE_COLOR[idx]}`}>
+          {((entry.score / entry.totalQuestions) * 100).toFixed(0)}%
+        </p>
+        <p className="text-xs text-gray-400 mt-1">
+          {formatTime(entry.timeTaken)}
+        </p>
+      </div>
+      <div
+        className={`w-full ${PODIUM_BAR_H[idx]} ${PODIUM_BAR_BG[idx]} rounded-b-xl flex items-center justify-center`}
+      >
+        <span className={`${PODIUM_BAR_TEXT[idx]} font-black text-xl`}>
+          {rank}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function Leaderboard({
   highlightName,
   activeSet,
@@ -54,20 +118,9 @@ export default function Leaderboard({
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Add this temporary useEffect to Leaderboard.tsx
   useEffect(() => {
-    const check = async () => {
-      const snap = await getDocs(collection(db, "quizResults"));
-      console.log("Total docs in quizResults:", snap.size);
-      snap.forEach((d) => console.log(d.id, d.data()));
-    };
-    check();
-  }, []);
+    if (!activeSet) return;
 
-  useEffect(() => {
-    //if (!activeSet) return;
-
-    console.log("Querying for activeSet:", activeSet);
     const q = query(
       collection(db, "quizResults"),
       where("questionSet", "==", activeSet),
@@ -100,6 +153,7 @@ export default function Leaderboard({
   if (entries.length === 0) {
     return (
       <div className="text-center py-20 text-gray-400">
+        <div className="text-5xl mb-4">🏆</div>
         <p className="text-sm">Belum ada peserta lagi. Jadilah yang pertama!</p>
       </div>
     );
@@ -108,101 +162,45 @@ export default function Leaderboard({
   const top3 = entries.slice(0, 3);
   const rest = entries.slice(3);
 
+  // Podium order: 2nd, 1st, 3rd (visual left-to-right)
+  // Only show slots that exist
+  const podiumSlots: { entry: LeaderboardEntry; rank: number }[] = [];
+  if (top3[1]) podiumSlots.push({ entry: top3[1], rank: 2 });
+  if (top3[0]) podiumSlots.push({ entry: top3[0], rank: 1 });
+  if (top3[2]) podiumSlots.push({ entry: top3[2], rank: 3 });
+
   return (
     <div className="max-w-2xl mx-auto">
       <div className="text-center mb-8">
         <div className="inline-block bg-orange-500 text-white px-4 py-1 rounded-full text-xs font-semibold tracking-wider mb-3">
           PAPAN MATA
         </div>
-        <h2 className="text-3xl font-bold text-[#0b3d2e]">Wira Digital</h2>
+        <h2 className="text-3xl font-bold text-[#0b3d2e]">Wira Digital 🏆</h2>
         <p className="text-gray-500 text-sm mt-1">
           Top 10 peserta terbaik — skor tertinggi, masa terpantas.
         </p>
       </div>
 
-      {/* Podium for top 3 */}
+      
+      {/* Podium */}
       <div className="flex items-end justify-center gap-3 mb-8">
-        {/* 2nd place */}
-        {top3[1] && (
-          <div className="flex flex-col items-center flex-1">
-            <div
-              className={`w-full rounded-t-2xl border-2 px-3 py-4 text-center ${RANK_BG[1]}`}
-              style={{ minHeight: "110px" }}
-            >
-              <p className="font-bold text-gray-800 text-sm leading-tight truncate">
-                {top3[1].name}
-              </p>
-              <p className="text-xs text-gray-400 mb-2 truncate">
-                {top3[1].kelas}
-              </p>
-              <p className={`text-2xl font-black ${RANK_SCORE_COLOR[1]}`}>
-                {((top3[1].score / top3[1].totalQuestions) * 100).toFixed(0)}%
-              </p>
-              <p className="text-xs text-gray-400 mt-1">
-                {formatTime(top3[1].timeTaken)}
-              </p>
-            </div>
-            <div className="w-full h-12 bg-gray-200 rounded-b-xl flex items-center justify-center">
-              <span className="text-gray-500 font-black text-xl">2</span>
-            </div>
-          </div>
-        )}
-
-        {/* 1st place - taller */}
-        {top3[0] && (
-          <div className="flex flex-col items-center flex-1">
-            <div className="w-28 animate-bounce">
-              <LottieAnim animationData={animationData} loop={false} />
-            </div>
-            <div
-              className={`w-full rounded-t-2xl border-2 px-3 py-5 text-center ${RANK_BG[0]} shadow-lg`}
-              style={{ minHeight: "140px" }}
-            >
-              <p className="font-bold text-gray-800 text-sm leading-tight truncate">
-                {top3[0].name}
-              </p>
-              <p className="text-xs text-gray-400 mb-2 truncate">
-                {top3[0].kelas}
-              </p>
-              <p className={`text-2xl font-black ${RANK_SCORE_COLOR[0]}`}>
-                {((top3[0].score / top3[0].totalQuestions) * 100).toFixed(0)}%
-              </p>
-              <p className="text-xs text-gray-400 mt-1">
-                {formatTime(top3[0].timeTaken)}
-              </p>
-            </div>
-            <div className="w-full h-16 bg-yellow-400 rounded-b-xl flex items-center justify-center">
-              <span className="text-yellow-800 font-black text-2xl">1</span>
-            </div>
-          </div>
-        )}
-
-        {/* 3rd place */}
-        {top3[2] && (
-          <div className="flex flex-col items-center flex-1">
-            <div
-              className={`w-full rounded-t-2xl border-2 px-3 py-4 text-center ${RANK_BG[2]}`}
-              style={{ minHeight: "90px" }}
-            >
-              <p className="font-bold text-gray-800 text-sm leading-tight truncate">
-                {top3[2].name}
-              </p>
-              <p className="text-xs text-gray-400 mb-2 truncate">
-                {top3[2].kelas}
-              </p>
-              <p className={`text-2xl font-black ${RANK_SCORE_COLOR[2]}`}>
-                {((top3[2].score / top3[2].totalQuestions) * 100).toFixed(0)}%
-              </p>
-              <p className="text-xs text-gray-400 mt-1">
-                {formatTime(top3[2].timeTaken)}
-              </p>
-            </div>
-            <div className="w-full h-8 bg-orange-300 rounded-b-xl flex items-center justify-center">
-              <span className="text-orange-800 font-black text-xl">3</span>
-            </div>
-          </div>
-        )}
+        <div className="absolute -left-2">
+          <LottieAnim animationData={confettiData} loop={false} />
+        </div>
+        {podiumSlots.map(({ entry, rank }) => (
+          <PodiumCard
+            key={entry.id}
+            entry={entry}
+            rank={rank}
+            highlightName={highlightName}
+            showTrophy={rank === 1}
+          />
+        ))}
+        <div className="absolute -right-2">
+          <LottieAnim animationData={confettiData} loop={false} />
+        </div>
       </div>
+
 
       {/* Ranks 4–10 */}
       {rest.length > 0 && (
@@ -239,7 +237,7 @@ export default function Leaderboard({
                 </div>
                 <div className="text-right shrink-0">
                   <p className="font-bold text-gray-800 text-sm">
-                    {entry.score}/{entry.totalQuestions}
+                    {((entry.score / entry.totalQuestions) * 100).toFixed(0)}%
                   </p>
                   <p className="text-xs text-gray-400">
                     {formatTime(entry.timeTaken)}
