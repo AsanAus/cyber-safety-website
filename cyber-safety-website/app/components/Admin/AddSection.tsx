@@ -10,6 +10,8 @@ import {
   doc,
   serverTimestamp,
   getDocs,
+  query,
+  orderBy,
 } from "firebase/firestore";
 
 export default function AddSection() {
@@ -18,28 +20,45 @@ export default function AddSection() {
 
   const [topicInputs, setTopicInputs] = useState<any>({});
 
-  // 🔥 FETCH SECTIONS + TOPICS
+  //  FETCH SECTIONS + TOPICS
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "sections"), async (snap) => {
-      const temp: any[] = [];
+    const unsubscribe = onSnapshot(
+      query(collection(db, "sections"), orderBy("createdAt", "desc")),
+      (snap) => {
+        const temp: any[] = [];
 
-      for (let s of snap.docs) {
-        const sectionData: any = { id: s.id, ...s.data() };
+        snap.docs.forEach((s) => {
+          const sectionData: any = { id: s.id, ...s.data(), topics: [] };
 
-        const topicSnap = await getDocs(
-          collection(db, "sections", s.id, "topics")
-        );
+          // 🔥 LISTEN TO TOPICS REALTIME
+          onSnapshot(
+            collection(db, "sections", s.id, "topics"),
+            (topicSnap) => {
+              sectionData.topics = topicSnap.docs.map((t) => ({
+                id: t.id,
+                ...t.data(),
+              }));
 
-        sectionData.topics = topicSnap.docs.map((t) => ({
-          id: t.id,
-          ...t.data(),
-        }));
+              // update state properly
+              setSections((prev) => {
+                const index = prev.findIndex((p) => p.id === s.id);
 
-        temp.push(sectionData);
-      }
+                if (index === -1) return prev;
 
-      setSections(temp);
-    });
+                const updated = [...prev];
+                updated[index] = sectionData; // ✅ replace at same position
+
+                return updated;
+              });
+            },
+          );
+
+          temp.push(sectionData);
+        });
+
+        setSections(temp);
+      },
+    );
 
     return () => unsubscribe();
   }, []);
@@ -73,7 +92,7 @@ export default function AddSection() {
 
     setTopicInputs((prev: any) => ({
       ...prev,
-      [sectionId]: { topic: "", desc: ""},
+      [sectionId]: { topic: "", desc: "" },
     }));
   };
 
@@ -83,7 +102,7 @@ export default function AddSection() {
   };
 
   return (
-    <div className="p-6 text-white">
+    <div className="max-w-5xl mx-auto py-10">
       <h1 className="text-2xl font-bold mb-6">Admin Panel</h1>
 
       {/* ➕ ADD SECTION */}
@@ -94,10 +113,7 @@ export default function AddSection() {
           placeholder="New Section Title"
           className="px-4 py-2 rounded text-white w-80"
         />
-        <button
-          onClick={addSection}
-          className="bg-green-600 px-4 py-2 rounded"
-        >
+        <button onClick={addSection} className="bg-green-600 px-4 py-2 rounded">
           Add Section
         </button>
       </div>
@@ -105,7 +121,6 @@ export default function AddSection() {
       {/* 🔁 SECTIONS */}
       {sections.map((section) => (
         <div key={section.id} className="mb-10 border p-4 rounded-lg">
-          
           {/* SECTION TITLE */}
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-semibold">{section.title}</h2>
@@ -121,7 +136,7 @@ export default function AddSection() {
           <div className="flex gap-2 mb-4">
             <input
               placeholder="Topic title"
-              value={topicInputs[section.id]?.topic|| ""}
+              value={topicInputs[section.id]?.topic || ""}
               onChange={(e) =>
                 setTopicInputs({
                   ...topicInputs,
@@ -149,7 +164,6 @@ export default function AddSection() {
               className="px-2 py-1 rounded text-white"
             />
 
-
             <button
               onClick={() => addTopic(section.id)}
               className="bg-blue-500 px-3 rounded"
@@ -168,15 +182,11 @@ export default function AddSection() {
                 <div>
                   <h3 className="font-semibold">{topic.topic}</h3>
                   <p className="text-sm">{topic.desc}</p>
-                  <span className="text-xs opacity-70">
-                    {topic.level}
-                  </span>
+                  <span className="text-xs opacity-70">{topic.level}</span>
                 </div>
 
                 <button
-                  onClick={() =>
-                    deleteTopic(section.id, topic.id)
-                  }
+                  onClick={() => deleteTopic(section.id, topic.id)}
                   className="text-red-300"
                 >
                   ✕

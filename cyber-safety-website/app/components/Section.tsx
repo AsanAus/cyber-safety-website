@@ -14,7 +14,7 @@ export default function Section() {
   const [sections, setSections] = useState<any[]>([]);
 
   useEffect(() => {
-  const unsubscribe = onSnapshot(collection(db, "sections"), async (snap) => {
+  const unsubscribe = onSnapshot(query(collection(db, "sections"), orderBy("createdAt", "asc")), async (snap) => {
     
     const temp = await Promise.all(
       snap.docs.map(async (s) => {
@@ -46,16 +46,16 @@ export default function Section() {
 }, []);
 
   return (
-    <div className="space-y-8 mt-16">
+    <div className="max-w-6xl mx-auto">
       {sections.map((section) => (
-        <div key={section.id}>
-          <h2 className="text-xl font-bold mb-4">{section.title}</h2>
+        <div key={section.id} className="pb-10">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">{section.title}</h2>
 
           <div className="space-y-3">
             {section.topics?.map((topic: any, index: number) => (
-              <div key={index} className="bg-gray-100 p-4 rounded-lg">
-                <h4 className="font-semibold text-sm">{topic.topic}</h4>
-                <p className="text-xs text-gray-600">{topic.desc}</p>
+              <div key={index} className="bg-white p-4 rounded-xl border shadow-sm">
+                <h4 className="font-semibold">{topic.topic}</h4>
+                <p className="text-s text-gray-600 pt-1">{topic.desc}</p>
               </div>
             ))}
           </div>
