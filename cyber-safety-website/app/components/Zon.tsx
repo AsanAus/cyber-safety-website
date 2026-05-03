@@ -4,9 +4,13 @@ import { useEffect, useState } from "react";
 import { db } from "@/app/libs/firebase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import Section from "./Section";
+import SectionPart2 from "./SectionPart2";
 
 export default function Zon() {
   const [tips, setTips] = useState<any[]>([]);
+
+  const firstTip = tips[0];
+  const remainingTips = tips?.slice(1) || [];
 
   useEffect(() => {
     // ✅ OLDEST FIRST (top = first tip)
@@ -64,27 +68,22 @@ export default function Zon() {
 
           {/* CONTENT */}
           <div className="space-y-4">
-            {/* QUOTE */}
-            <div className="bg-white rounded-xl p-4 border shadow-sm">
-              <p className="font-semibold text-sm mb-1">
-                🧑‍💻 Abang Cyber berkata:
-              </p>
-              <p className="text-sm text-gray-600">
-                "Jom kita tengok macam mana nak jadi hebat di internet! Kamu tak
-                perlu jadi pakar IT — cukup tahu 5 perkara asas untuk selamat
-                online. Mula dari sini!"
-              </p>
-            </div>
+            {firstTip && (
+              <div className="bg-white rounded-xl p-4 border shadow-sm">
+                <p className="font-semibold text-sm mb-1">{firstTip.title}</p>
+                <p className="text-sm text-gray-600">{firstTip.desc}</p>
+              </div>
+            )}
 
             {/* TIPS */}
             <div className="grid grid-cols-2 gap-4">
-              {tips.map((tip, i) => (
+              {remainingTips.map((tip, i) => (
                 <div
                   key={tip.id} // ✅ IMPORTANT FIX
                   className="bg-white p-4 rounded-xl border shadow-sm"
                 >
                   <p className="text-xs text-orange-500 font-semibold">
-                    {tip.no}
+                    0{i+1} 
                   </p>
                   <h4 className="font-semibold text-sm">{tip.title}</h4>
                   <p className="text-xs text-gray-500">{tip.desc}</p>
@@ -97,7 +96,7 @@ export default function Zon() {
 
       <Section />
 
-
+      <SectionPart2 />
     </section>
   );
 }

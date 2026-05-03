@@ -102,100 +102,115 @@ export default function AddSection() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Admin Panel</h1>
-
-      {/* ➕ ADD SECTION */}
-      <div className="mb-6 flex gap-3">
-        <input
-          value={newSection}
-          onChange={(e) => setNewSection(e.target.value)}
-          placeholder="New Section Title"
-          className="px-4 py-2 rounded text-white w-80"
-        />
-        <button onClick={addSection} className="bg-green-600 px-4 py-2 rounded">
-          Add Section
-        </button>
-      </div>
-
-      {/* 🔁 SECTIONS */}
-      {sections.map((section) => (
-        <div key={section.id} className="mb-10 border p-4 rounded-lg">
-          {/* SECTION TITLE */}
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">{section.title}</h2>
-            <button
-              onClick={() => deleteSection(section.id)}
-              className="text-red-400"
-            >
-              Delete
-            </button>
-          </div>
-
-          {/* ➕ ADD TOPIC */}
-          <div className="flex gap-2 mb-4">
-            <input
-              placeholder="Topic title"
-              value={topicInputs[section.id]?.topic || ""}
-              onChange={(e) =>
-                setTopicInputs({
-                  ...topicInputs,
-                  [section.id]: {
-                    ...topicInputs[section.id],
-                    topic: e.target.value,
-                  },
-                })
-              }
-              className="px-2 py-1 rounded text-white"
-            />
-
-            <input
-              placeholder="Description"
-              value={topicInputs[section.id]?.desc || ""}
-              onChange={(e) =>
-                setTopicInputs({
-                  ...topicInputs,
-                  [section.id]: {
-                    ...topicInputs[section.id],
-                    desc: e.target.value,
-                  },
-                })
-              }
-              className="px-2 py-1 rounded text-white"
-            />
-
-            <button
-              onClick={() => addTopic(section.id)}
-              className="bg-blue-500 px-3 rounded"
-            >
-              +
-            </button>
-          </div>
-
-          {/* 📦 TOPICS */}
-          <div className="grid grid-cols-2 gap-3">
-            {section.topics?.map((topic: any) => (
-              <div
-                key={topic.id}
-                className="bg-green-800 p-3 rounded flex justify-between"
-              >
-                <div>
-                  <h3 className="font-semibold">{topic.topic}</h3>
-                  <p className="text-sm">{topic.desc}</p>
-                  <span className="text-xs opacity-70">{topic.level}</span>
-                </div>
-
-                <button
-                  onClick={() => deleteTopic(section.id, topic.id)}
-                  className="text-red-300"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
+    <div className="bg-slate-100 min-h-screen">
+      <div className="max-w-5xl mx-auto py-10 px-4 space-y-8">
+        {/* SECTION TITLE */}
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold text-gray-700">Add Section</h2>
+          <div className="h-px bg-gray-300 flex-1 ml-4"></div>
         </div>
-      ))}
+
+        {/* ➕ ADD SECTION */}
+        <div className="flex gap-3">
+          <input
+            value={newSection}
+            onChange={(e) => setNewSection(e.target.value)}
+            placeholder="New Section Title"
+            className="px-4 py-2 rounded-lg border border-gray-300 w-80 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+          />
+          <button
+            onClick={addSection}
+            className="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg font-medium shadow-sm transition"
+          >
+            Add Section
+          </button>
+        </div>
+
+        {/* 🔁 SECTIONS */}
+        {sections.map((section) => (
+          <div
+            key={section.id}
+            className="bg-white border border-gray-100 rounded-xl shadow-sm p-6"
+          >
+            {/* SECTION TITLE */}
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold text-gray-800">
+                {section.title}
+              </h2>
+              <button
+                onClick={() => deleteSection(section.id)}
+                className="text-red-500 hover:text-red-600 text-sm font-medium"
+              >
+                Delete
+              </button>
+            </div>
+
+            {/* ➕ ADD TOPIC */}
+            <div className="flex gap-2 mb-4">
+              <input
+                placeholder="Topic title"
+                value={topicInputs[section.id]?.topic || ""}
+                onChange={(e) =>
+                  setTopicInputs({
+                    ...topicInputs,
+                    [section.id]: {
+                      ...topicInputs[section.id],
+                      topic: e.target.value,
+                    },
+                  })
+                }
+                className="px-3 py-2 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              />
+
+              <input
+                placeholder="Description"
+                value={topicInputs[section.id]?.desc || ""}
+                onChange={(e) =>
+                  setTopicInputs({
+                    ...topicInputs,
+                    [section.id]: {
+                      ...topicInputs[section.id],
+                      desc: e.target.value,
+                    },
+                  })
+                }
+                className="px-3 py-2 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              />
+
+              <button
+                onClick={() => addTopic(section.id)}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-lg shadow-sm transition"
+              >
+                +
+              </button>
+            </div>
+
+            {/* 📦 TOPICS */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {section.topics?.map((topic: any) => (
+                <div
+                  key={topic.id}
+                  className="bg-gray-50 border-l-4 border-emerald-500 p-4 rounded-lg flex justify-between items-start hover:shadow-md transition"
+                >
+                  <div>
+                    <h3 className="font-semibold text-gray-800">
+                      {topic.topic}
+                    </h3>
+                    <p className="text-sm text-gray-500 mt-1">{topic.desc}</p>
+                  </div>
+
+                  <button
+                    onClick={() => deleteTopic(section.id, topic.id)}
+                    className="text-red-400 hover:text-red-600 text-sm"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

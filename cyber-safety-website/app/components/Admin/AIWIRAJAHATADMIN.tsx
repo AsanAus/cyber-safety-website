@@ -76,114 +76,145 @@ export default function AIWIRAJAHATADMIN() {
   };
 
   return (
-    <section className="max-w-5xl mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-6">Admin AI Wira & Jahat</h1>
-
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-8 shadow-lg">
-        {/* 🔥 TABS */}
-        <div className="flex gap-2 mb-6 bg-gray-900 p-2 rounded-xl w-fit">
-          <button
-            onClick={() => setActiveTab("wira")}
-            className={`px-4 py-2 rounded-lg transition ${
-              activeTab === "wira"
-                ? "bg-blue-500 text-white shadow-md"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            AI Wira
-          </button>
-
-          <button
-            onClick={() => setActiveTab("jahat")}
-            className={`px-4 py-2 rounded-lg transition ${
-              activeTab === "jahat"
-                ? "bg-red-500 text-white shadow-md"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            AI Jahat
-          </button>
+    <div className="bg-slate-100 min-h-screen">
+   <section className="max-w-5xl mx-auto py-10 px-4 space-y-8">
+  {/* SECTION TITLE */}
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold text-gray-700">AI: Wira atau Penjahat?</h2>
+          <div className="h-px bg-gray-300 flex-1 ml-4"></div>
         </div>
 
-        {/* ➕ ADD */}
-        <div className="mb-6 space-y-2">
-          <input
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            placeholder="topic"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-          />
-          <textarea
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            placeholder="Description"
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
-          />
-          <button
-            onClick={handleAdd}
-            className="bg-green-500 text-white px-4 py-2"
-          >
-            Add {activeTab}
-          </button>
-        </div>
+  {/* FORM CARD */}
+  <div className="bg-white border border-gray-800 rounded-xl p-6 shadow-md space-y-6">
+
+    {/* 🔥 TABS */}
+    <div className="flex gap-2 bg-gray-800 p-1 rounded-lg w-fit">
+      <button
+        onClick={() => setActiveTab("wira")}
+        className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+          activeTab === "wira"
+            ? "bg-blue-500 text-white shadow"
+            : "text-gray-400 hover:text-white"
+        }`}
+      >
+        AI Wira
+      </button>
+
+      <button
+        onClick={() => setActiveTab("jahat")}
+        className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+          activeTab === "jahat"
+            ? "bg-red-500 text-white shadow"
+            : "text-gray-400 hover:text-white"
+        }`}
+      >
+        AI Jahat
+      </button>
+    </div>
+
+    {/* ➕ ADD FORM */}
+    <div className="space-y-3">
+      <input
+        className="w-full bg-white border border-gray-700 rounded-lg px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Topic"
+        value={topic}
+        onChange={(e) => setTopic(e.target.value)}
+      />
+
+      <textarea
+        className="w-full bg-white border border-gray-700 rounded-lg px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Description"
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
+      />
+
+      <button
+        onClick={handleAdd}
+        className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg font-medium transition shadow-sm"
+      >
+        + Add {activeTab}
+      </button>
+    </div>
+  </div>
+
+  {/* 📋 LIST */}
+  <div className="space-y-4">
+    {tips.map((item) => (
+      <div
+        key={item.id}
+        className="bg-white border border-gray-800 rounded-xl p-5 hover:shadow-lg transition"
+      >
+        {editingItem?.id === item.id ? (
+          <>
+            <input
+              className="w-full bg-white border border-gray-700 rounded-lg px-3 py-2 mb-2 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={editingItem.topic}
+              onChange={(e) =>
+                setEditingItem({
+                  ...editingItem,
+                  topic: e.target.value,
+                })
+              }
+            />
+
+            <textarea
+              className="w-full bg-white border border-gray-700 rounded-lg px-3 py-2 mb-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={editingItem.desc}
+              onChange={(e) =>
+                setEditingItem({
+                  ...editingItem,
+                  desc: e.target.value,
+                })
+              }
+            />
+
+            <div className="flex gap-2">
+              <button
+                onClick={handleUpdate}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1.5 rounded-lg"
+              >
+                Save
+              </button>
+
+              <button
+                onClick={() => setEditingItem(null)}
+                className="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-1.5 rounded-lg"
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h3 className="font-semibold text-lg text-gray-800">
+              {item.topic}
+            </h3>
+
+            <p className="text-gray-400 mt-1">
+              {item.desc}
+            </p>
+
+            <div className="mt-4 flex gap-3">
+              <button
+                onClick={() => setEditingItem(item)}
+                className="text-sm text-yellow-400 hover:text-yellow-300 font-medium"
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={() => handleDelete(item.id)}
+                className="text-sm text-red-400 hover:text-red-300 font-medium"
+              >
+                Delete
+              </button>
+            </div>
+          </>
+        )}
       </div>
-
-      {/* 📋 LIST */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
-        {tips.map((item) => (
-          <div key={item.id} className="border p-4 rounded">
-            {editingItem?.id === item.id ? (
-              <>
-                <input
-                  className="border p-2 w-full mb-2"
-                  value={editingItem.topic}
-                  onChange={(e) =>
-                    setEditingItem({
-                      ...editingItem,
-                      topic: e.target.value,
-                    })
-                  }
-                />
-                <textarea
-                  className="border p-2 w-full mb-2"
-                  value={editingItem.desc}
-                  onChange={(e) =>
-                    setEditingItem({
-                      ...editingItem,
-                      desc: e.target.value,
-                    })
-                  }
-                />
-                <button
-                  onClick={handleUpdate}
-                  className="bg-green-500 text-white px-3 py-1 mr-2"
-                >
-                  Save
-                </button>
-              </>
-            ) : (
-              <>
-                <h3 className="font-bold">{item.topic}</h3>
-                <p>{item.desc}</p>
-
-                <button
-                  onClick={() => setEditingItem(item)}
-                  className="bg-yellow-500 px-3 py-1 mr-2"
-                >
-                  Edit
-                </button>
-              </>
-            )}
-
-            <button
-              onClick={() => handleDelete(item.id)}
-              className="bg-red-500 text-white px-3 py-1"
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
-    </section>
+    ))}
+  </div>
+</section>
+</div>
   );
 }

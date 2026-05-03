@@ -77,8 +77,7 @@ export default function Sudutpenjaga() {
                   <div>
                     <h4 className="font-semibold">Pantau tanpa mengintip</h4>
                     <p className="text-sm text-gray-300">
-                      Gunakan kawalan ibu bapa (parental controls). Letakkan
-                      peranti di kawasan umum rumah.
+                      Gunakan kawalan ibu bapa (parental controls) pada peranti. Letakkan peranti di kawasan umum rumah, bukan dalam bilik tidur. 
                     </p>
                   </div>
                 </div>
@@ -165,8 +164,7 @@ export default function Sudutpenjaga() {
                   Kritikal
                 </span>
                 <p className="text-sm text-gray-300 mt-2">
-                  AI boleh cipta video palsu yang nampak real. Penjenayah boleh
-                  salah guna muka kamu.
+                  Teknologi AI yang boleh mencipta video atau gambar palsu yang kelihatan nyata. Penjenayah boleh gunakan muka anak kamu dalam video yang tidak sepatutnya.
                 </p>
               </div>
 
@@ -176,7 +174,7 @@ export default function Sudutpenjaga() {
                   Tinggi
                 </span>
                 <p className="text-sm text-gray-300 mt-2">
-                  AI boleh tiru suara untuk menipu ahli keluarga.
+                  AI boleh meniru suara seseorang dengan hanya beberapa saat audio. Penipu boleh gunakan suara 'anak' kamu untuk minta wang daripada ahli keluarga.
                 </p>
               </div>
 
@@ -186,8 +184,7 @@ export default function Sudutpenjaga() {
                   Kritikal
                 </span>
                 <p className="text-sm text-gray-300 mt-2">
-                  Penjenayah guna AI untuk buat profil palsu dan manipulasi
-                  emosi.
+                  Penjenayah menggunakan AI untuk mencipta profil palsu yang menarik dan berkomunikasi dengan kanak-kanak. Mereka sangat pandai manipulasi emosi.
                 </p>
               </div>
 
@@ -197,7 +194,7 @@ export default function Sudutpenjaga() {
                   Tinggi
                 </span>
                 <p className="text-sm text-gray-300 mt-2">
-                  Email/scam yang nampak sangat real guna AI.
+                  AI boleh mencipta e-mel atau mesej penipuan yang sangat meyakinkan, meniru guru, rakan, atau institusi rasmi.
                 </p>
               </div>
             </div>
