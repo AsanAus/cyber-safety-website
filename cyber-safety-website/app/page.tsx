@@ -1,112 +1,127 @@
 import Link from "next/link";
 import About from "@/app/components/About";
+import Welcome from "@/app/components/Welcome";
 
 export default function Home() {
   return (
     <main id="home" className="bg-[#0b3d2e] min-h-screen text-white">
+      {/* Glow Effect */}
+      <div className="absolute w-100 h-100 bg-green-400 opacity-20 blur-3xl rounded-full -top-25 -left-25" />
+      <div className="absolute w-75 h-75 bg-emerald-300 opacity-20 blur-3xl rounded-full -bottom-20 -right-20" />
 
-      {/* HERO */}
-      <section className="relative px-6 py-28 text-center overflow-hidden">
+      <Welcome />
 
-        {/* Glow Effect */}
-        <div className="absolute w-100 h-100 bg-green-400 opacity-20 blur-3xl rounded-full -top-25 -left-25" />
-        <div className="absolute w-75 h-75 bg-emerald-300 opacity-20 blur-3xl rounded-full -bottom-20 -right-20" />
-
-        <p className="text-yellow-300 font-semibold mb-4 tracking-widest">
-          SELAMAT DATANG KE <span className="text-green-300 ">BIJAK DIGITAL</span>
-        </p>
-
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-          Kesedaran Keselamatan Siber
-          <br />
-          untuk Semua
-        </h1>
-
-        <p className="max-w-2xl mx-auto text-gray-200 text-lg mb-10">
-          Lindungi diri anda di dunia digital. Pelajari tentang ancaman siber,
-          elakkan penipuan, dan bina tabiat teknologi yang lebih selamat.
-        </p>
-
-        <Link href="/discovery">
-          <button className="bg-green-400 text-[#0b3d2e] px-8 py-3 rounded-full font-semibold hover:bg-green-300 transition shadow-lg">
-            🚀 Mula Sekarang
-          </button>
-        </Link>
-      </section>
+      <div className="bg-[#0b3d2e]">
+        <svg
+          viewBox="0 0 1440 120"
+          className="w-full h-20"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,60 C300,120 1140,0 1440,60 L1440,120 L0,120 Z"
+            fill="#f5f1eb"
+          />
+        </svg>
+      </div>
 
       {/* ABOUT */}
 
       <About />
 
-
       {/* FEATURES */}
-      <section className="px-6 py-24">
-        <h2 className="text-3xl font-bold text-center mb-16">
-          Terokai Platform Kami
-        </h2>
+      <section className="bg-[#f5f1eb] pt-24">
+        <div className="max-w-6xl mx-auto text-center mb-16">
+          <div className="inline-block bg-[#0b3d2e] text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">
+            Navigasi Utama
+          </div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Terokai Platform Kami!
+          </h2>
 
+          <p className="text-gray-500 max-w-xl mx-auto">
+            Pilih bahagian di bawah untuk mula belajar, bermain dan memahami
+            dunia digital dengan lebih selamat.
+          </p>
+        </div>
+
+        {/* CARDS */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
           {/* CARD */}
           <Link href="/discovery">
-            <div className="group bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl hover:scale-105 transition cursor-pointer shadow-lg">
-              <h3 className="text-xl font-bold mb-3 text-yellow-300">
-                📘 Maklumat
+            <div className="group bg-gray-50 border p-8 rounded-3xl hover:shadow-xl hover:-translate-y-2 transition cursor-pointer">
+              <div className="text-4xl mb-4">📘</div>
+
+              <h3 className="text-xl font-bold mb-2 text-[#0b3d2e]">
+                Maklumat
               </h3>
-              <p className="text-gray-200">
+
+              <p className="text-gray-600 text-sm mb-4">
                 Ketahui tentang scam, phishing dan ancaman siber lain.
               </p>
+
+              <span className="text-sm text-indigo-600 font-medium group-hover:underline">
+                Teroka →
+              </span>
             </div>
           </Link>
 
           {/* CARD */}
           <Link href="/quiz">
-            <div className="group bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl hover:scale-105 transition cursor-pointer shadow-lg">
-              <h3 className="text-xl font-bold mb-3 text-yellow-300">
-                🎮 Kuiz
-              </h3>
-              <p className="text-gray-200">
+            <div className="group bg-gray-50 border p-8 rounded-3xl hover:shadow-xl hover:-translate-y-2 transition cursor-pointer">
+              <div className="text-4xl mb-4">🎮</div>
+
+              <h3 className="text-xl font-bold mb-2 text-[#0b3d2e]">Kuiz</h3>
+
+              <p className="text-gray-600 text-sm mb-4">
                 Uji pengetahuan anda melalui situasi dunia sebenar.
               </p>
+
+              <span className="text-sm text-indigo-600 font-medium group-hover:underline">
+                Mula →
+              </span>
             </div>
           </Link>
 
           {/* CARD */}
           <Link href="/survey">
-            <div className="group bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl hover:scale-105 transition cursor-pointer shadow-lg">
-              <h3 className="text-xl font-bold mb-3 text-yellow-300">
-                📊 Tinjauan
+            <div className="group bg-gray-50 border p-8 rounded-3xl hover:shadow-xl hover:-translate-y-2 transition cursor-pointer">
+              <div className="text-4xl mb-4">📊</div>
+
+              <h3 className="text-xl font-bold mb-2 text-[#0b3d2e]">
+                Tinjauan
               </h3>
-              <p className="text-gray-200">
+
+              <p className="text-gray-600 text-sm mb-4">
                 Kongsikan pengalaman anda untuk bantu komuniti.
               </p>
+
+              <span className="text-sm text-indigo-600 font-medium group-hover:underline">
+                Sertai →
+              </span>
             </div>
           </Link>
-
         </div>
       </section>
 
       {/* CTA */}
-      <section className="px-6 py-24 text-center">
-        <div className="max-w-3xl mx-auto bg-linear-to-r from-green-400/20 to-emerald-300/20 backdrop-blur-xl border border-white/20 rounded-3xl p-12 shadow-xl">
-
-          <h2 className="text-3xl font-bold mb-4">
+      <section className="bg-[#f5f1eb] px-6 py-24 text-center">
+        <div className="max-w-6xl mx-auto border border-gray-300 rounded-3xl p-12 backdrop-blur-md bg-orange-400">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Jom jadi pengguna digital yang bijak 🔐
           </h2>
 
-          <p className="text-gray-200 mb-8">
-            Ambil langkah pertama untuk melindungi diri anda sekarang.
+          <p className="text-black mb-8">
+            Ambil langkah pertama untuk melindungi diri anda daripada ancaman
+            siber.
           </p>
 
           <Link href="/discovery">
-            <button className="bg-green-400 text-[#0b3d2e] px-8 py-3 rounded-full font-semibold hover:bg-green-300 transition">
+            <button className="bg-[#0b3d2e] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition shadow-md">
               Mula Sekarang
             </button>
           </Link>
-
         </div>
       </section>
-
     </main>
   );
 }

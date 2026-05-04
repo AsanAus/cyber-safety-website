@@ -95,3 +95,31 @@
       desc: "Jika disalah guna, AI boleh membantu dalam mencuri atau mendedahkan maklumat peribadi.",
     },
   ];
+
+  <!-- {/* HERO */}
+      <section className="relative px-6 py-28 text-center overflow-hidden pb-50">
+        {/* Glow Effect */}
+        <div className="absolute w-100 h-100 bg-green-400 opacity-20 blur-3xl rounded-full -top-25 -left-25" />
+        <div className="absolute w-75 h-75 bg-emerald-300 opacity-20 blur-3xl rounded-full -bottom-20 -right-20" />
+
+        <p className="text-yellow-300 font-semibold mb-4 tracking-widest">
+          SELAMAT DATANG KE <span className="text-green-300 ">BIJAK DIGITAL</span>
+        </p>
+
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+          Kesedaran Keselamatan Siber
+          <br />
+          untuk Semua
+        </h1>
+
+        <p className="max-w-2xl mx-auto text-gray-200 text-lg mb-10">
+          Lindungi diri anda di dunia digital. Pelajari tentang ancaman siber,
+          elakkan penipuan, dan bina tabiat teknologi yang lebih selamat.
+        </p>
+
+        <Link href="/discovery">
+          <button className="bg-green-400 text-[#0b3d2e] px-8 py-3 rounded-full font-semibold hover:bg-green-300 transition shadow-lg">
+            🚀 Mula Sekarang
+          </button>
+        </Link>
+      </section> -->

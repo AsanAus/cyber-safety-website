@@ -39,7 +39,7 @@ export default function SectionPart2() {
   backdrop-blur-md border transition-all duration-300
   ${
     isOpen
-      ? "bg-gradient-to-r from-green-500/90 to-green-700/90 text-white shadow-lg shadow-green-500/20"
+      ? "bg-linear-to-r from-green-500/90 to-green-700/90 text-white shadow-lg shadow-green-500/20"
       : "bg-white/70 border-green-200 hover:bg-green-50 hover:shadow-md"
   }`}
             >

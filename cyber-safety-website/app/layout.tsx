@@ -80,7 +80,7 @@ export default function RootLayout({
             <div>
               <h4 className="font-semibold mb-4">Navigasi</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li className="hover:text-white cursor-pointer">Utama</li>
+                <li className="hover:text-white cursor-pointer"> Laman Utama</li>
                 <li className="hover:text-white cursor-pointer">Kenali Kami</li>
                 <li className="hover:text-white cursor-pointer">Zon Pelajar</li>
                 <li className="hover:text-white cursor-pointer">
@@ -89,7 +89,7 @@ export default function RootLayout({
                 <li className="hover:text-white cursor-pointer">
                   Cabaran Digital
                 </li>
-                <li className="hover:text-white cursor-pointer">Ruang Suara</li>
+                <li className="hover:text-white cursor-pointer">Survey</li>
               </ul>
             </div>
 
@@ -116,8 +116,7 @@ export default function RootLayout({
           {/* BOTTOM */}
           <div className="border-t border-white/10 pt-6 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center gap-3">
             <p>
-              © 2026 Bijak Digital. Hak Cipta Terpelihara. Dibuat dengan Kasih Sayang
-              untuk pelajar Malaysia.
+              © 2026 Bijak Digital. Hak Cipta Terpelihara. Di bawah bimbingan Dr. Zalina Binti Abdul Halim.
             </p>
 
             <p className="text-xs text-gray-500">
