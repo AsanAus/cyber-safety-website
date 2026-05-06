@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "@/app/libs/firebase";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type Question = {
   text: string;
@@ -14,8 +14,13 @@ type Question = {
 
 export default function EditQuiz() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const setId = searchParams.get("set");
+
+  const [setId, setSetId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setSetId(params.get("set"));
+  }, []);
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
