@@ -9,6 +9,8 @@ export default function Home() {
       <div className="absolute w-100 h-100 bg-green-400 opacity-20 blur-3xl rounded-full -top-25 -left-25" />
       <div className="absolute w-75 h-75 bg-emerald-300 opacity-20 blur-3xl rounded-full -bottom-20 -right-20" />
 
+      <h1 className="text-4xl font-bold mb-4 center"> <br></br>Sofian Gay</h1>
+
       <Welcome />
 
       <div className="bg-[#0b3d2e]">
