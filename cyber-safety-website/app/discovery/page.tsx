@@ -1,11 +1,10 @@
-import Navbar from "@/app/components/Navbar";
+
 import Hero from "@/app/components/Hero";
 import About from "@/app/components/About";
 import Zon from "@/app/components/Zon";
 import Wirapenjahat from "@/app/components/Wirapenjahat";
 import Sudutpenjaga from "@/app/components/Sudutpenjaga";
-import RuangSuara from "@/app/components/RuangSuara";
-import PetiSuara from "@/app/components/PetiSuara";
+
 
 export default function Home() {
   return (

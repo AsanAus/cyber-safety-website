@@ -1,6 +1,8 @@
 "use client";
 
-import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
+export const dynamic = "force-dynamic";
+
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "@/app/libs/firebase";
 import { useRouter, useSearchParams } from "next/navigation";
