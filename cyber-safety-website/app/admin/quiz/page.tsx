@@ -121,7 +121,22 @@ export default function QuizAdminPage() {
 
       <aside className="w-64 border border-black/15 bg-[#f9f8f6]">
         <div className="p-3">
-          <h2 className="text-md font-sans mb-4 text-center">QUESTION SETS</h2>
+          <button
+            onClick={() => {
+              if (window.history.length > 1) {
+                router.back();
+              } else {
+                router.push("/admin");
+              }
+            }}
+            className="w-full flex items-center justify-center bg-gray-500 px-4 py-2 rounded text-white hover:bg-gray-600 transition"
+          >
+            ← Back
+          </button>
+
+          <h2 className="text-md font-sans mb-4 text-center pt-5">
+            QUESTION SETS
+          </h2>
           <button
             onClick={() => {
               router.push("/admin/quiz/create?set=" + selectedSet);
@@ -183,7 +198,12 @@ export default function QuizAdminPage() {
                     Active Set
                   </span>
                 )}
-                <button onClick={() => {router.push(`/admin/quiz/edit?set=${selectedSet}`)}} className="text-xs font-bold px-6 py-3 rounded-md bg-gray-200 text-gray-700 border border-gray-300 hover:bg-gray-300">
+                <button
+                  onClick={() => {
+                    router.push(`/admin/quiz/edit?set=${selectedSet}`);
+                  }}
+                  className="text-xs font-bold px-6 py-3 rounded-md bg-gray-200 text-gray-700 border border-gray-300 hover:bg-gray-300"
+                >
                   Edit
                 </button>
                 <button

@@ -12,6 +12,8 @@ import { serverTimestamp } from "firebase/firestore";
 import AIWIRAJAHATADMIN from "@/app/components/Admin/AIWIRAJAHATADMIN";
 import AddSection from "@/app/components/Admin/AddSection";
 import AddSectionPart2 from "@/app/components/Admin/AddSectionPart2";
+import AddLaw from "@/app/components/Admin/AddLaw";
+import Link from "next/link";
 
 export default function AdminPage() {
   const [title, setTitle] = useState("");
@@ -90,11 +92,21 @@ export default function AdminPage() {
       <div className="min-h-screen bg-slate-100 py-10 px-4">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* HEADER */}
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800">
-              Admin Dashboard
-            </h1>
-            <p className="text-gray-500 mt-1">Content Management</p>
+          <div className="flex items-center justify-between">
+            {/* LEFT SIDE */}
+            <div>
+              <h1 className="text-3xl font-bold text-gray-800">
+                Admin Dashboard
+              </h1>
+              <p className="text-gray-500 mt-1">Content Management</p>
+            </div>
+
+            {/* RIGHT SIDE BUTTON */}
+            <Link href="/admin/quiz">
+              <button className="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-600">
+                Go to Quiz Dashboard →
+              </button>
+            </Link>
           </div>
 
           {/* SECTION TITLE */}
@@ -207,6 +219,8 @@ export default function AdminPage() {
       <AddSectionPart2 />
 
       <AIWIRAJAHATADMIN />
+
+      <AddLaw />
     </>
   );
 }

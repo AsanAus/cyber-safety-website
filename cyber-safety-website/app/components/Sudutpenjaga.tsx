@@ -1,3 +1,5 @@
+import Law from "@/app/components/Law"
+
 export default function Sudutpenjaga() {
   return (
     <>
@@ -107,46 +109,8 @@ export default function Sudutpenjaga() {
           {/* ===================== */}
           {/* UNDANG-UNDANG */}
           {/* ===================== */}
-          <div>
-            <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-              ⚖️ Rujukan Undang-undang Malaysia
-            </h3>
-            <p className="text-gray-300 mb-6 text-sm">
-              Buli Siber dan Penyebaran Berita Palsu adalah JENAYAH SEBENAR di
-              Malaysia.
-            </p>
 
-            <div className="space-y-4">
-              {/* ITEM */}
-              <div className="bg-green-900/40 border border-green-700 rounded-xl p-4 flex justify-between items-center hover:bg-green-800/50 transition">
-                <div>
-                  <p className="font-semibold">
-                    Akta Komunikasi dan Multimedia 1998 (Akta 588)
-                  </p>
-                  <p className="text-xs text-yellow-400">Seksyen 211 & 233</p>
-                </div>
-                <span>⌄</span>
-              </div>
-
-              <div className="bg-green-900/40 border border-green-700 rounded-xl p-4 flex justify-between items-center hover:bg-green-800/50 transition">
-                <div>
-                  <p className="font-semibold">Akta Jenayah Komputer 1997</p>
-                  <p className="text-xs text-yellow-400">Seksyen 3, 4 & 5</p>
-                </div>
-                <span>⌄</span>
-              </div>
-
-              <div className="bg-green-900/40 border border-green-700 rounded-xl p-4 flex justify-between items-center hover:bg-green-800/50 transition">
-                <div>
-                  <p className="font-semibold">
-                    Akta Hasutan 1948 (Pindaan 2015)
-                  </p>
-                  <p className="text-xs text-yellow-400">Seksyen 4</p>
-                </div>
-                <span>⌄</span>
-              </div>
-            </div>
-          </div>
+          <Law />
 
           {/* ===================== */}
           {/* AI ANCAMAN */}
@@ -222,7 +186,7 @@ export default function Sudutpenjaga() {
               <div className="bg-black/20 rounded-xl p-4">
                 <p className="text-sm text-gray-300">MCMC Aduan</p>
                 <p className="text-xl font-bold text-yellow-400">
-                  1-800-18-8878
+                  1-800-188-030
                 </p>
                 <p className="text-xs text-gray-400">
                   Aduan kandungan internet
