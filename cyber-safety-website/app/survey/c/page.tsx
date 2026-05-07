@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function SurveyB() {
+export default function SurveyC() {
   const [selectedSurvey, setSelectedSurvey] = useState<string | null>(null);
 
   return (
@@ -10,7 +10,7 @@ export default function SurveyB() {
 
       {/* TITLE */}
       <h1 className="text-3xl font-bold text-center mb-6">
-        Sekolah Menengah Kebangsaan La Salle
+        Sekolah Kebangsaan (2) Sultan Alam Shah
       </h1>
 
       <p className="text-center mb-10 max-w-xl mx-auto">
@@ -32,9 +32,8 @@ export default function SurveyB() {
           onClick={() => setSelectedSurvey("Ibu Bapa")}
           className="bg-green-700 text-white px-6 py-3 rounded-xl hover:bg-green-800"
         >
-          Ibu Bapa / Penjaga
+          Ibu Bapa
         </button>
-
 
       </div>
 
@@ -44,7 +43,7 @@ export default function SurveyB() {
 
         {selectedSurvey === "Pelajar" && (
           <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSd_dSDCdPXrwca3dfJ9HiRP1BfuxZfrNuTJ9k2dSOdNQgSrqw/viewform?embedded=true"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSd0r7Kg86ovJY4SEJEsOgzhr7YrqxN_YG9fCYsRnpf5JHyyAA/viewform?embedded=true"
             width="100%"
             height="700"
             className="rounded-xl shadow-lg"
@@ -55,7 +54,7 @@ export default function SurveyB() {
 
         {selectedSurvey === "Ibu Bapa" && (
           <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSdvCXInXblnANONTEXASY6jAWivaF_gui8Fk-7c-vUrIrGS2w/viewform?embedded=true"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSe9_GuwV0a8pKvHX5x7IJU8TzLg8_P4evwPt7z5eG6-r6z3ew/viewform?embedded=true"
             width="100%"
             height="700"
             className="rounded-xl shadow-lg"
@@ -64,6 +63,7 @@ export default function SurveyB() {
           </iframe>
         )}
 
+  
 
       </div>)}
 
