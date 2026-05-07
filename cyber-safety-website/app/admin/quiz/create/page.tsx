@@ -22,6 +22,12 @@ export default function CreateQuiz() {
   const [existingSets, setExistingSets] = useState<string[]>([]);
 
   useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isAdminLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      router.push("/admin-login");
+      return;
+    }
     const unsub = onSnapshot(collection(db, "Question Set"), (snapshot) => {
       setExistingSets(
         snapshot.docs.filter((d) => d.id !== "Active Set").map((d) => d.id),

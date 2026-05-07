@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { db } from "@/app/libs/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import { addDoc } from "firebase/firestore";
@@ -16,6 +16,8 @@ import AddLaw from "@/app/components/Admin/AddLaw";
 import Link from "next/link";
 
 export default function AdminPage() {
+  const router = useRouter();
+
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
 
@@ -26,6 +28,13 @@ export default function AdminPage() {
   const [editDesc, setEditDesc] = useState("");
 
   useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isAdminLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      router.push("/admin-login");
+      return;
+    }
+
     const q = query(collection(db, "tips"), orderBy("createdAt", "desc"));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -87,6 +96,11 @@ export default function AdminPage() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("isAdminLoggedIn");
+    router.replace("/admin-login");
+  };
+
   return (
     <>
       <div className="min-h-screen bg-slate-100 py-10 px-4">
@@ -101,12 +115,21 @@ export default function AdminPage() {
               <p className="text-gray-500 mt-1">Content Management</p>
             </div>
 
-            {/* RIGHT SIDE BUTTON */}
-            <Link href="/admin/quiz">
-              <button className="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-600">
-                Go to Quiz Dashboard →
-              </button>
-            </Link>
+            {/* RIGHT SIDE BUTTONS */}
+<div className="flex items-center gap-3">
+  <Link href="/admin/quiz">
+    <button className="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-600">
+      Go to Quiz Dashboard →
+    </button>
+  </Link>
+
+  <button
+    onClick={handleLogout}
+    className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"
+  >
+    Logout
+  </button>
+</div>
           </div>
 
           {/* SECTION TITLE */}

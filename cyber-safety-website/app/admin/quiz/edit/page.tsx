@@ -18,6 +18,14 @@ export default function EditQuiz() {
   const [setId, setSetId] = useState<string | null>(null);
 
   useEffect(() => {
+
+    const isLoggedIn = localStorage.getItem("isAdminLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      router.push("/admin-login");
+      return;
+    }
+
     const params = new URLSearchParams(window.location.search);
     setSetId(params.get("set"));
   }, []);

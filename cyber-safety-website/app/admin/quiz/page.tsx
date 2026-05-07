@@ -22,6 +22,14 @@ export default function QuizAdminPage() {
   const router = useRouter();
 
   useEffect(() => {
+
+    const isLoggedIn = localStorage.getItem("isAdminLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      router.push("/admin-login");
+      return;
+    }
+
     const unsubscribe = onSnapshot(
       collection(db, "Question Set"),
       (snapshot) => {

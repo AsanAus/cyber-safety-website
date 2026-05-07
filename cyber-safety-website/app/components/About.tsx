@@ -45,6 +45,17 @@ export default function About() {
         >
           Kumpulan B
         </button>
+
+        <button
+          onClick={() => setActiveTab("C")}
+          className={`px-6 py-2 rounded-full font-medium transition ${
+            activeTab === "C"
+              ? "bg-[#0b3d2e] text-white shadow-md"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          }`}
+        >
+          Kumpulan C
+        </button>
       </div>
 
       {/* CONTENT */}
@@ -56,7 +67,7 @@ export default function About() {
         className="max-w-5xl mx-auto"
       >
         <div className="grid md:grid-cols-3 gap-6">
-          {activeTab === "A" ? <GroupACards /> : <GroupBCards />}
+          {activeTab === "A" ? <GroupACards /> : activeTab === "B" ? <GroupBCards /> : <GroupCCards />}
         </div>
       </motion.div>
     </section>
@@ -173,6 +184,59 @@ function GroupBCards() {
           <li>Meningkatkan kesedaran ancaman pengantunan seksual</li>
           <li>Memberi pendedahan penyalahgunaan internet</li>
           <li>Meningkatkan kefahaman isu digital semasa</li>
+        </ul>
+      </Card>
+    </>
+  );
+}
+
+function GroupCCards() {
+  return (
+    <>
+      <Card
+        title={
+          <>
+            🌐 <br />
+            Siapa Kami
+          </>
+        }
+        color="text-[#0b3d2e]"
+      >
+        Pelajar Kumpulan 4 bagi Kursus Undang-Undang dan Masyarakat
+        (LIA1007) Sesi 2025/2026 dari Fakulti Undang-Undang,
+        Universiti Malaya di bawah bimbingan Dr. Zalina Binti Abdul Halim.
+      </Card>
+
+      <Card
+        title={
+          <>
+            📖 <br />
+            Apa Yang Kami Lakukan
+          </>
+        }
+        color="text-[#0b3d2e]"
+      >
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Bengkel & ceramah interaktif di SK (2) Sultan Alam Shah</li>
+          <li>Aktiviti permainan berkaitan keselamatan siber</li>
+          <li>Pengumpulan data melalui kaji selidik atas talian</li>
+          <li>Pembangunan laman web pendidikan & penilaian murid</li>
+        </ul>
+      </Card>
+
+      <Card
+        title={
+          <>
+            🎯 <br /> Misi Kami
+          </>
+        }
+        color="text-[#0b3d2e]"
+      >
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Meningkatkan kesedaran tentang keselamatan internet</li>
+          <li>Membantu pelajar lebih bijak menggunakan teknologi</li>
+          <li>Meningkatkan literasi digital & ketahanan diri</li>
+          <li>Memberi pendedahan mengenai ancaman jenayah siber</li>
         </ul>
       </Card>
     </>
