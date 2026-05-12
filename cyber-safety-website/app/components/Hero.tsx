@@ -48,7 +48,7 @@ export default function Hero() {
           </div>
 
           <div>
-            <h3 className="text-2xl font-bold text-yellow-400">3</h3>
+            <h3 className="text-2xl font-bold text-yellow-400">2</h3>
             <p className="text-sm text-gray-300">Mini Games Interaktif</p>
           </div>
 

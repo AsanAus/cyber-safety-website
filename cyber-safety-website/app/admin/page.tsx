@@ -116,20 +116,20 @@ export default function AdminPage() {
             </div>
 
             {/* RIGHT SIDE BUTTONS */}
-<div className="flex items-center gap-3">
-  <Link href="/admin/quiz">
-    <button className="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-600">
-      Go to Quiz Dashboard →
-    </button>
-  </Link>
+            <div className="flex items-center gap-3">
+              <Link href="/admin/quiz">
+                <button className="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-600">
+                  Go to Quiz Dashboard →
+                </button>
+              </Link>
 
-  <button
-    onClick={handleLogout}
-    className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"
-  >
-    Logout
-  </button>
-</div>
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"
+              >
+                Logout
+              </button>
+            </div>
           </div>
 
           {/* SECTION TITLE */}
